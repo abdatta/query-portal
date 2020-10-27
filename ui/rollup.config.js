@@ -1,3 +1,4 @@
+import dev from 'rollup-plugin-dev'
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
@@ -8,17 +9,20 @@ import typescript from '@rollup/plugin-typescript';
 
 const production = !process.env.ROLLUP_WATCH;
 
-function serve() {
-    let server;
-    
+function validate(watch) {
+    let validator;
+
     function toExit() {
-        if (server) server.kill(0);
+        if (validator) validator.kill(0);
     }
 
     return {
         writeBundle() {
-            if (server) return;
-            server = require('child_process').spawn('npm', ['run', 'serve', '--', '--dev'], {
+            if (validator) return;
+
+            const args = ['run', 'validate'];
+            if (watch) args.push('--', '--watch');
+            validator = require('child_process').spawn('npm', args, {
                 stdio: ['ignore', 'inherit', 'inherit'],
                 shell: true
             });
@@ -32,7 +36,7 @@ function serve() {
 export default {
     input: 'src/main.ts',
     output: {
-        sourcemap: true,
+        sourcemap: !production,
         format: 'iife',
         name: 'app',
         file: 'public/build/bundle.js'
@@ -64,16 +68,22 @@ export default {
             inlineSources: !production
         }),
 
-        // In dev mode, call `npm run start` once
-        // the bundle has been generated
-        !production && serve(),
+        // Run svelte-check for typescript compilation
+        validate(!production),
 
-        // Watch the `public` directory and refresh the
-        // browser on changes when not in production
+        // In dev mode, serve the public folder with api proxy
+        !production && dev({
+            host: 'localhost',
+            port: 5000,
+            dirs: ['public'],
+            spa: 'public/index.html',
+            proxy: { '/api/*': 'http://localhost:3000/' },
+        }),
+
+        // In dev mode, watch the `public` directory for changes and reload
         !production && livereload('public'),
 
-        // If we're building for production (npm run build
-        // instead of npm run dev), minify
+        // If we're building for production, minify
         production && terser()
     ],
     watch: {
