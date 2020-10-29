@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NbSidebarService, NbThemeService, NbMediaBreakpointsService } from '@nebular/theme';
+import { NbSidebarService, NbThemeService, NbMediaBreakpointsService, NbMenuItem } from '@nebular/theme';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +9,24 @@ import { NbSidebarService, NbThemeService, NbMediaBreakpointsService } from '@ne
 export class AppComponent implements OnInit {
 
   sidebarCollapsible = false;
+  items: NbMenuItem[] = [
+    {
+      title: 'Ask a Query',
+      icon: 'question-mark-outline',
+    },
+    {
+      title: 'See Responses',
+      icon: 'message-square-outline',
+    },
+    {
+      title: 'Login',
+      icon: 'log-in-outline',
+    },
+    {
+      title: 'Logout',
+      icon: 'log-out-outline',
+    },
+  ];
 
   constructor(private sidebarService: NbSidebarService,
               private mediaBreakpointsService: NbMediaBreakpointsService,

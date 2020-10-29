@@ -5,6 +5,7 @@
   </nb-layout-header>
 
   <nb-sidebar [fixed]="sidebarCollapsible" [state]="sidebarCollapsible ? 'collapsed' : 'expanded'" #sidebar>
+    <nb-menu [items]="items"></nb-menu>
   </nb-sidebar>
 
   <nb-layout-column>
