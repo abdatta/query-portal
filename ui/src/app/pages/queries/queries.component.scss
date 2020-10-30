@@ -1,0 +1,66 @@
+@import '../../../themes';
+
+.queries-container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.title {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.on-date {
+    float: right;
+    font-size: small;
+    color: nb-theme(color-basic-600);
+}
+
+.query {
+    width: 100%;
+    max-width: 750px;
+
+    nb-card-header {
+        padding: 1rem 1.5rem 0.6rem;
+    }
+
+    nb-card-body {
+        padding: 0.6rem 1.5rem;
+    }
+
+    nb-accordion-item-header {
+        padding: 0.6rem 1.5rem 1rem;
+    }
+
+    nb-accordion-item-header.accordion-item-header-expanded {
+        padding: 0.6rem 1.5rem;
+    }
+
+    nb-accordion-item-body {
+        ::ng-deep .item-body {
+            padding: 1rem 1.25rem;
+        }
+
+        .reply {
+            box-shadow:
+                0 2px 2px 0 nb-theme(color-basic-transparent-200) inset,
+                0 1px 5px 0 nb-theme(color-basic-transparent-200) inset,
+                0 3px 1px -2px nb-theme(color-basic-transparent-200) inset;
+            background-color: nb-theme(color-basic-transparent-200);
+            margin-bottom: 1rem;
+
+            nb-card-header {
+                padding: 1rem 1rem 0.2rem;
+            }
+
+            nb-card-body {
+                padding: 0.2rem 1rem 1rem;
+            }
+        }
+
+        .reply:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

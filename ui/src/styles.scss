@@ -6,3 +6,10 @@
   @include nb-theme-global();
 };
 /* You can add global styles to this file, and also import other style files */
+
+.title {
+  text-transform: uppercase;
+  padding: nb-theme(button-ghost-tiny-padding);
+  font-family: nb-theme(button-text-font-family);
+  font-weight: nb-theme(button-text-font-weight);
+}

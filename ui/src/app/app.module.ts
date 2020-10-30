@@ -1,15 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import {
+  NbThemeModule,
+  NbLayoutModule,
+  NbSidebarModule,
+  NbButtonModule,
+  NbIconModule,
+  NbMenuModule,
+  NbCardModule,
+  NbAccordionModule
+} from '@nebular/theme';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbButtonModule, NbIconModule, NbMenuModule } from '@nebular/theme';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { QueriesComponent } from './pages/queries/queries.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    QueriesComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +32,9 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbLayoutModule,
     NbEvaIconsModule,
     NbButtonModule,
-    NbIconModule
+    NbIconModule,
+    NbCardModule,
+    NbAccordionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

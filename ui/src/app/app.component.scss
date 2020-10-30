@@ -1,12 +1,5 @@
 @import '../themes';
 
-.title {
-    text-transform: uppercase;
-    padding: nb-theme(button-ghost-tiny-padding);
-    font-family: nb-theme(button-text-font-family);
-    font-weight: nb-theme(button-text-font-weight);
-}
-
 .overlay {
     position: fixed;
     top: 0;
