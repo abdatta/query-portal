@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { QueriesService } from 'src/app/services/queries/queries.service';
+import { QueryDto } from 'dto/query.dto';
 
 @Component({
   selector: 'app-queries',
@@ -7,11 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QueriesComponent implements OnInit {
 
-  queries = [];
+  loading = true;
+  queries: QueryDto[] = [];
 
-  constructor() { }
+  constructor(private queriesService: QueriesService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.queries = await this.queriesService.getQueries();
+    this.loading = false;
   }
 
 }
