@@ -1,23 +1,31 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import { Document, Types } from "mongoose";
 
-@Schema({
-    timestamps: {
-        createdAt: 'askedOn',
-        updatedAt: false
-    }
-})
+@Schema()
+export class QueryReply {
+    _id?: Types.ObjectId;
+
+    @Prop({ required: true })
+    from: string;
+
+    @Prop({ required: true })
+    body: string;
+
+    @Prop({ required: true })
+    repliedOn: Date;
+}
+
+const QueryReplySchema = SchemaFactory.createForClass(QueryReply);
+
+@Schema()
 export class Query {
-    id?: string;
+    _id?: Types.ObjectId;
 
     @Prop({ required: true, index: true })
     from: string;
 
-    @Prop({ required: true, index: true })
-    to: string;
-
-    @Prop({ required: true })
-    subject: string;
+    @Prop({ type: [String], required: true, index: true })
+    to: string[];
 
     @Prop({ required: true })
     body: string;
@@ -25,11 +33,8 @@ export class Query {
     @Prop({ required: true })
     askedOn?: Date;
 
-    @Prop()
-    reply?: string;
-
-    @Prop()
-    repliedOn?: Date;
+    @Prop({ type: [QueryReplySchema], required: true, default: [] })
+    replies?: QueryReply[];
 }
 
 export type QueryDocument = Query & Document;
