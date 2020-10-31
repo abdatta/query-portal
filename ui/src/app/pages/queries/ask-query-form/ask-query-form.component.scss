@@ -1,0 +1,32 @@
+@import "../../../../themes.scss";
+
+.query-form {
+    width: 100%;
+    max-width: 750px;
+
+    nb-card-body {
+        overflow: visible;
+    }
+}
+
+.ask-buttons-group {
+    height: 40px;
+    width: fit-content;
+    overflow: hidden;
+
+    .ask-buttons {
+        button {
+            box-shadow: none;
+        }
+
+        button:first-child {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        button:last-child {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+}

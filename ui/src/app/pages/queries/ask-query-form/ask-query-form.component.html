@@ -1,0 +1,48 @@
+<nb-card class="query-form">
+    <nb-card-body fxLayout="column" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between" fxLayoutGap="20px" style="width: 100%;">
+            <nb-form-field fxFlex>
+                <div nbSuffix>@iitk.ac.in</div>
+                <input type="text" nbInput placeholder="Username" fullWidth>
+            </nb-form-field>
+            <nb-select placeholder="Choose whom to ask" fxFlex fullWidth>
+                <nb-option value="1">Gymkhana President</nb-option>
+                <nb-option value="2">Y19 Senator</nb-option>
+                <nb-option value="3">Y18 Senator</nb-option>
+                <nb-option value="4">Y17 Senator</nb-option>
+                <nb-option value="4">Y16 Senator</nb-option>
+            </nb-select>
+        </div>
+        <textarea nbInput fullWidth placeholder="Your query..."></textarea>
+        <div class="ask-buttons-group" fxLayout="column" fxLayoutAlign="start stretch"
+             [style.overflow]="showAllAskOptions ? 'visible' : 'hidden'">
+            <div fxLayout="row" fxLayoutAlign="center" class="ask-buttons">
+                <button nbButton fxFlex="grow" status="success"
+                        (mousedown)="$event.preventDefault()"
+                        (click)="askQuery()">Ask Your Query</button>
+                <button nbButton fxFlex
+                        (click)="showAllAskOptions = !showAllAskOptions"
+                        (blur)="showAllAskOptions = false">
+                    <nb-icon icon="arrow-ios-downward-outline"></nb-icon>
+                </button>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center" class="ask-buttons">
+                <button nbButton status="warning" fxFlex="grow"
+                        (mousedown)="$event.preventDefault()"
+                        (click)="askQuery('undisclosed')">Ask Undisclosedly</button>
+                <button nbButton fxFlex [nbTooltip]="undisclosedHint"
+                        (mousedown)="$event.preventDefault()">
+                    <nb-icon icon="question-mark-circle-outline"></nb-icon>
+                </button>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center" class="ask-buttons">
+                <button nbButton fxFlex="grow" status="danger"
+                        (mousedown)="$event.preventDefault()"
+                        (click)="askQuery('anonymous')">Ask Anonymously</button>
+                <button nbButton fxFlex [nbTooltip]="anonymousHint" (mousedown)="$event.preventDefault()">
+                    <nb-icon icon="question-mark-circle-outline"></nb-icon>
+                </button>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
