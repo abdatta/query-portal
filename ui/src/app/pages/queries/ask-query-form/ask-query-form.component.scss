@@ -13,20 +13,30 @@
     height: 40px;
     width: fit-content;
     overflow: hidden;
+    border-radius: nb-theme(button-rectangle-border-radius);
 
     .ask-buttons {
         button {
             box-shadow: none;
+            border-radius: 0;
         }
+    }
 
+    .ask-buttons:first-child {
         button:first-child {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
+            border-top-left-radius: nb-theme(button-rectangle-border-radius);
         }
-
         button:last-child {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
+            border-top-right-radius: nb-theme(button-rectangle-border-radius);
+        }
+    }
+
+    .ask-buttons:last-child {
+        button:first-child {
+            border-bottom-left-radius: nb-theme(button-rectangle-border-radius);
+        }
+        button:last-child {
+            border-bottom-right-radius: nb-theme(button-rectangle-border-radius);
         }
     }
 }

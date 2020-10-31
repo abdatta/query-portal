@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { QueryDto } from 'dto/query.dto';
+import { GetQueryDto, CreateQueryDto } from 'dto/query.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,15 @@ export class QueriesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getQueries(): Promise<QueryDto[]> {
-    return this.httpClient.get<QueryDto[]>('/api/query').toPromise();
+  getQueries(): Promise<GetQueryDto[]> {
+    return this.httpClient.get<GetQueryDto[]>('/api/query').toPromise();
+  }
+
+  askQuery(to: string, from: string, body: string, undisclosed?: boolean, anonymous?: boolean): Promise<GetQueryDto> {
+    const query: CreateQueryDto = {
+      from: anonymous ? undefined : from,
+      to, body, undisclosed
+    };
+    return this.httpClient.post<GetQueryDto>('/api/query', query).toPromise();
   }
 }

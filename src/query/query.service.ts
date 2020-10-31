@@ -21,7 +21,7 @@ export class QueryService {
     }
 
     async findAll(): Promise<Query[]> {
-        return this.queryModel.find().exec();
+        return this.queryModel.find().sort({ askedOn: 'desc' }).exec();
     }
 
     async replyTo(id: string, from: string, body: string): Promise<Query> {

@@ -1,5 +1,5 @@
 <div class="queries-container">
-    <app-ask-query-form class="query"></app-ask-query-form>
+    <app-ask-query-form class="query" (submitted)="ngOnInit()"></app-ask-query-form>
     <div class="title">Previously Asked Queries</div>
     <ng-container *ngIf="loading; else loadedContent">
         <div class="loader" [nbSpinner]="loading" nbSpinnerStatus="primary"></div>

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import {
@@ -38,6 +39,7 @@ import { AskQueryFormComponent } from './pages/queries/ask-query-form/ask-query-
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule,
     FlexLayoutModule,
     NbThemeModule.forRoot({ name: 'corporate' }),
     NbSidebarModule.forRoot(),

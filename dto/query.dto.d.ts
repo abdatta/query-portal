@@ -1,5 +1,5 @@
  
- export interface QueryDto {
+ export interface GetQueryDto {
     id: string;
     from: string;
     to: string;
@@ -11,4 +11,11 @@
         body: string;
         repliedOn: number;
     }[];
+}
+
+export interface CreateQueryDto {
+    from?: string;
+    to: string;
+    body: string;
+    undisclosed?: boolean
 }

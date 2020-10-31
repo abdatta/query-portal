@@ -21,8 +21,11 @@ const QueryReplySchema = SchemaFactory.createForClass(QueryReply);
 export class Query {
     _id?: Types.ObjectId;
 
-    @Prop({ required: true, index: true })
-    from: string;
+    @Prop({ index: true })
+    from?: string;
+
+    @Prop({ default: false })
+    undisclosed?: boolean;
 
     @Prop({ type: [String], required: true, index: true })
     to: string[];
