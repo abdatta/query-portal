@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { NbMenuItem } from '@nebular/theme';
+import { NbMenuItem, NbDialogService } from '@nebular/theme';
 import { QueriesService } from 'src/app/services/queries/queries.service';
+import { LoginComponent } from '../../login/login.component';
 
 @Component({
   selector: 'app-ask-query-form',
@@ -28,22 +29,28 @@ export class AskQueryFormComponent implements OnInit {
   submitting = false;
   @Output() submitted = new EventEmitter<void>();
 
-  constructor(private queriesService: QueriesService) { }
+  constructor(private queriesService: QueriesService,
+              private dialogService: NbDialogService) { }
 
   ngOnInit(): void {
   }
 
-  askQuery(as?: 'undisclosed' | 'anonymous'): void {
+  async askQuery(as?: 'undisclosed' | 'anonymous'): Promise<void> {
     this.showAllAskOptions = false;
+
+    const jwtToken: string =
+      as === 'anonymous' ? undefined :
+      await this.dialogService.open(LoginComponent).onClose.toPromise();
+
+    if (!jwtToken && as !== 'anonymous') { return; }
+
     this.submitting = true;
-    this.queriesService.askQuery(this.to, this.from, this.body, as === 'undisclosed', as === 'anonymous')
-      .then(() => {
-        this.from = '';
-        this.to = '';
-        this.body = '';
-        this.submitting = false;
-        this.submitted.emit();
-      });
+    await this.queriesService.askQuery(this.to, this.body, jwtToken, as === 'undisclosed');
+    this.from = '';
+    this.to = '';
+    this.body = '';
+    this.submitting = false;
+    this.submitted.emit();
   }
 
 }

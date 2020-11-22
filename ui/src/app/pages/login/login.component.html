@@ -1,0 +1,13 @@
+<nb-card class="login-form">
+    <nb-card-header>Login</nb-card-header>
+    <nb-card-body fxLayout="column" fxLayoutGap="20px" fxFlexAlign="stretch">
+        <nb-form-field fxFlex>
+            <div nbSuffix>@iitk.ac.in</div>
+            <input type="text" #username nbInput placeholder="Username" fullWidth>
+        </nb-form-field>
+      <input type="password" #password nbInput placeholder="Password" fullWidth>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton hero status="success" (click)="submit(username.value, password.value)">Login</button>
+    </nb-card-footer>
+</nb-card>

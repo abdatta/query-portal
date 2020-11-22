@@ -19,7 +19,8 @@ import {
   NbSelectModule,
   NbFormFieldModule,
   NbContextMenuModule,
-  NbTooltipModule
+  NbTooltipModule,
+  NbDialogModule
 } from '@nebular/theme';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,12 +28,15 @@ import { AppComponent } from './app.component';
 import { QueriesComponent } from './pages/queries/queries.component';
 import { QueriesService } from './services/queries/queries.service';
 import { AskQueryFormComponent } from './pages/queries/ask-query-form/ask-query-form.component';
+import { LoginComponent } from './pages/login/login.component';
+import { AuthService } from './services/auth/auth.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     QueriesComponent,
-    AskQueryFormComponent
+    AskQueryFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +48,7 @@ import { AskQueryFormComponent } from './pages/queries/ask-query-form/ask-query-
     NbThemeModule.forRoot({ name: 'corporate' }),
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
+    NbDialogModule.forRoot({}),
     NbLayoutModule,
     NbEvaIconsModule,
     NbButtonModule,
@@ -57,7 +62,10 @@ import { AskQueryFormComponent } from './pages/queries/ask-query-form/ask-query-
     NbContextMenuModule,
     NbTooltipModule
   ],
-  providers: [QueriesService],
+  providers: [
+    AuthService,
+    QueriesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

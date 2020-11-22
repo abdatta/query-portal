@@ -13,11 +13,9 @@ export class QueriesService {
     return this.httpClient.get<GetQueryDto[]>('/api/query').toPromise();
   }
 
-  askQuery(to: string, from: string, body: string, undisclosed?: boolean, anonymous?: boolean): Promise<GetQueryDto> {
-    const query: CreateQueryDto = {
-      from: anonymous ? undefined : from,
-      to, body, undisclosed
-    };
-    return this.httpClient.post<GetQueryDto>('/api/query', query).toPromise();
+  async askQuery(to: string, body: string, jwtToken?: string, undisclosed?: boolean): Promise<GetQueryDto> {
+    const query: CreateQueryDto = { to, body, undisclosed };
+    const headers = jwtToken ? { Authorization: 'Bearer ' + jwtToken } : {};
+    return this.httpClient.post<GetQueryDto>('/api/query', query, { headers }).toPromise();
   }
 }

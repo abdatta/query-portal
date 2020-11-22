@@ -14,7 +14,6 @@
 }
 
 export interface CreateQueryDto {
-    from?: string;
     to: string;
     body: string;
     undisclosed?: boolean

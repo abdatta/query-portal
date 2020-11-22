@@ -1,7 +1,9 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, Req, UseGuards } from '@nestjs/common';
 import { QueryService } from './query.service';
 import { GetQueryDto, CreateQueryDto } from 'dto/query.dto';
 import { Query } from './query.schema';
+import { JwtAuthGuard } from 'src/auth/auth.guard';
+import { User } from 'src/auth/auth.strategy';
 
 @Controller('query')
 export class QueryController {
@@ -15,12 +17,13 @@ export class QueryController {
     }
 
     @Post('')
-    async addQuery(@Body() body: CreateQueryDto): Promise<GetQueryDto> {
+    @UseGuards(JwtAuthGuard({ allowNoAuth: true }))
+    async addQuery(@Req() req: { user?: User, body: CreateQueryDto }): Promise<GetQueryDto> {
         return this.queryService.create({
-            from: body.from || undefined,
-            undisclosed: body.undisclosed,
-            body: body.body,
-            to: Array.isArray(body.to) ? body.to : [body.to]
+            from: req.user?.username,
+            undisclosed: req.body.undisclosed,
+            body: req.body.body,
+            to: Array.isArray(req.body.to) ? req.body.to : [req.body.to]
         }).then(this.toQueryDto);
     }
 
