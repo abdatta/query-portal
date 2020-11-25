@@ -22,6 +22,7 @@ import {
   NbTooltipModule,
   NbDialogModule
 } from '@nebular/theme';
+import {AutosizeModule} from 'ngx-autosize';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,13 +31,15 @@ import { QueriesService } from './services/queries/queries.service';
 import { AskQueryFormComponent } from './pages/queries/ask-query-form/ask-query-form.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthService } from './services/auth/auth.service';
+import { RespondComponent } from './pages/respond/respond.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     QueriesComponent,
     AskQueryFormComponent,
-    LoginComponent
+    LoginComponent,
+    RespondComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { AuthService } from './services/auth/auth.service';
     NbFormFieldModule,
     NbSelectModule,
     NbContextMenuModule,
-    NbTooltipModule
+    NbTooltipModule,
+    AutosizeModule
   ],
   providers: [
     AuthService,

@@ -18,4 +18,8 @@ export class QueriesService {
     const headers = jwtToken ? { Authorization: 'Bearer ' + jwtToken } : {};
     return this.httpClient.post<GetQueryDto>('/api/query', query, { headers }).toPromise();
   }
+
+  getQuery(id: string): Promise<GetQueryDto> {
+    return this.httpClient.get<GetQueryDto>('/api/query/' + id).toPromise();
+  }
 }

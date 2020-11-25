@@ -9,7 +9,7 @@
                 <nb-option *ngFor="let toOption of toOptions" [value]="toOption.username">{{ toOption.name }}</nb-option>
             </nb-select>
         </div>
-        <textarea nbInput fullWidth placeholder="Your query..." [(ngModel)]="body"></textarea>
+        <textarea autosize nbInput fullWidth placeholder="Your query..." [(ngModel)]="body"></textarea>
         <div class="ask-buttons-group" fxLayout="column" fxLayoutAlign="start stretch"
              [style.overflow]="showAllAskOptions ? 'visible' : 'hidden'">
             <div fxLayout="row" fxLayoutAlign="center" class="ask-buttons">

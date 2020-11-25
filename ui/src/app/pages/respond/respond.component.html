@@ -1,0 +1,51 @@
+<div class="queries-container">
+    <nb-card class="query" *ngIf="query">
+        <nb-card-header>{{query.from}} <span style="font-weight: normal;">asked:</span>
+            <div class="on-date">
+                <nb-icon icon="clock-outline" style="vertical-align: text-bottom;"></nb-icon>
+                {{query.askedOn | date}}
+            </div>
+        </nb-card-header>
+        <nb-card-body>
+            <b>@{{query.to}}</b> {{query.body}}
+        </nb-card-body>
+        <nb-accordion>
+            <nb-accordion-item [expanded]="true" [disabled]="true">
+                <nb-accordion-item-header>
+                    <ng-container *ngIf="query.replies.length; else noResposnes">
+                        Responses ({{query.replies.length}})
+                    </ng-container>
+                    <ng-template #noResposnes>
+                        No Responses Yet
+                    </ng-template>    
+                </nb-accordion-item-header>
+                <nb-accordion-item-body>
+                    <nb-card class="reply" *ngFor="let reply of query.replies">
+                        <nb-card-header>{{reply.from}} <span style="font-weight: normal;">responded:</span>
+                            <div class="on-date">
+                                <nb-icon icon="clock-outline" style="vertical-align: text-bottom;"></nb-icon>
+                                {{reply.repliedOn | date}}
+                            </div>
+                        </nb-card-header>
+                        <nb-card-body>
+                            {{reply.body}}
+                        </nb-card-body>
+                    </nb-card>
+                    <nb-card class="reply">
+                        <nb-card-header>
+                            Your <span style="font-weight: normal;">response:</span>
+                        </nb-card-header>
+                        <nb-card-body>
+                            <textarea autofocus autosize nbInput fullWidth [(ngModel)]="newReply"
+                                      rows="1" class="your-response" placeholder="Type your response here...">
+                            </textarea>
+                        </nb-card-body>
+                    </nb-card>
+                    <div class="send-response">
+                        <button nbButton status="success" (click)="sendReply()">Send Response</button>
+                    </div>
+                </nb-accordion-item-body>
+            </nb-accordion-item>
+        </nb-accordion>
+    </nb-card>
+</div>

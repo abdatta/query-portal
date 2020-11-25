@@ -13,10 +13,12 @@ export class AppComponent implements OnInit {
     {
       title: 'Ask a Query',
       icon: 'question-mark-outline',
+      link: '/'
     },
     {
-      title: 'See Responses',
+      title: 'Respond',
       icon: 'message-square-outline',
+      link: '/respond/5f9bec0932c9503120a87097'
     },
     {
       title: 'Login',
